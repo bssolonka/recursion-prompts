@@ -1,4 +1,13 @@
 /* jshint esversion: 6 */
+//Step One: Identify the smallest piece of the data that your function needs to handle
+
+//Step Two: Write a function to handle this case and only this case.
+
+//Step Three: Identify what will make the function need to continue.
+
+//Step Four: Make the recursive call.
+
+//Step: Five accumulate the return.
 
 // Solve the following prompts using recursion.
 
@@ -13,9 +22,6 @@ var factorial = function(n) {
   if (n === 0 || n === 1) {
     return 1;
   }
-  //if (n === 1) {
-   // return 1;
-//}
 
   if (n < 0) {
     return null;
@@ -27,12 +33,41 @@ var factorial = function(n) {
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
+// input array of intergers.[1,2,3]
+// output one interger containing the sum; 6
 var sum = function(array) {
+
+  if (array.length === 0) {
+    return 0;
+  }
+
+  return array[0] + sum(array.slice(1));
+
+//recursive case Keep adding the indexes as long as the array is not empty
+
+  //return the result of all indexes in the array added together.
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  // A result to store the summation
+   var result = 0;
+  // Iterate through a basic array
+  if (array.length === 0) {
+    return 0;
+  }
+
+  for (var i = 0; i < array.length; i++) {
+    if ( Array.isArray(array[i])) {
+      result += arraySum(array[i]);
+    } else {
+      result += array[i];
+    }
+
+  }
+  return result;
+
 };
 
 // 4. Check if a number is even.
@@ -144,7 +179,25 @@ var rMap = function(array, callback) {
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
+//Inputs: Takes an object and a key to search for
+//Output: Integer that represents the count.
 var countKeysInObj = function(obj, key) {
+  var count = 0;
+  var inner = function(obj, key) {
+  for (var keys in obj) {
+
+    if (keys === key) {
+      count = count + 1;
+    }
+
+    if (typeof obj[keys] === "object") {
+     count += countKeysInObj(obj[keys], key);
+    }
+
+  }
+};
+    inner(obj, key);
+    return count;
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -152,6 +205,7 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
