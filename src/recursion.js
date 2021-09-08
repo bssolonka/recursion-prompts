@@ -88,11 +88,6 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
-// As long as its greater than 0 add it to the result
-
-
-
-
   if (n === 1 || n === 0 || n === -1) {
     return 0;
    }
@@ -106,6 +101,30 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  if (y - x === 1 || y - x === 0 || y - x === -1) {
+    return [];
+  }
+  if (y - x === 2) {
+    return [x + 1];
+  }
+
+    if (x < y) {
+    var array = range(x , y - 1);
+    array.push(y - 1);
+    return array;
+    }
+
+    if (x > y) {
+    var array = range(x , y + 1);
+    array.push(y + 1);
+    return array;
+    }
+
+
+
+
+
+
 };
 
 // 7. Compute the exponent of a number.
